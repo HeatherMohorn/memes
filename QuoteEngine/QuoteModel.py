@@ -1,25 +1,21 @@
-from abc import ABC, abstractmethod
 import csv
+import docx
 
 class QuoteModel():
     def __init__(self, body, author):
         self.body = body
         self.author = author
 
-class IngestorInterface(ABC):
-
-    @classmethod
-    @abstractmethod
-    def can_ingest(cls, path): -> boolean
-        pass
-
-    @classmethod
-    @abstractmethod
-    def parse(cls, path: str) -> List[QuoteModel]
-        pass
+    def __str__(self):
+        string = f'"{self.body}" - {self.author}'
 
 class CSVIngestor(IngestorInterface):
+    allowed_extensions = [csv]
+
+    @classmethod
     def parse(cls, path):
+        if not cls.can_ingest(path):
+            raise Exception('Cannot ingest')
         quotes = []
         with open(path, 'r') as infile:
             reader = csv.DictReader(infile)
@@ -29,13 +25,31 @@ class CSVIngestor(IngestorInterface):
         return quotes
 
 class DOCXIngestor(IngestorInterface):
-    pass
+    allowed_extensions = [docx]
+
+    @classmethod
+    def parse(cls, path):
+        if not cls.can_ingest(path):
+            raise Exception('Cannot ingest')
+        quotes = []
+        doc = docx.Documents(path)
+
+        for para in doc.paragraphs:
+            elem = para.text.split(' - ')
+            quote = QuoteModel(elem[0], elem[1])
+            quotes.append(quote)
+        return quotes
 
 class PDFIngestor(IngestorInterface):
     pass
 
-class TXTIngestor(IngestorInterface):
+class TextIngestor(IngestorInterface):
+    allowed_extensions = [txt]
+
+    @classmethod
     def parse(cls, path):
+        if not cls.can_ingest(path):
+            raise Exception('Cannot ingest')
         quotes = []
         with open(path, 'r') as infile:
             contents = infile.read()
