@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import QuoteModel
 
 class IngestorInterface(ABC):
     allowed_extensions = []
