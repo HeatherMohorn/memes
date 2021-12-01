@@ -1,6 +1,7 @@
-import QuoteModel
-import IngestorInterface
+from ..QuoteEngine.QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
 import docx
+
 
 class DOCXIngestor(IngestorInterface):
     allowed_extensions = ['docx']
@@ -10,10 +11,11 @@ class DOCXIngestor(IngestorInterface):
         if not cls.can_ingest(path):
             raise Exception('Cannot ingest')
         quotes = []
-        doc = docx.Documents(path)
+        doc = docx.Document(path)
 
         for para in doc.paragraphs:
-            elem = para.text.split(' - ')
-            quote = QuoteModel(elem[0], elem[1])
-            quotes.append(quote)
+            if para.text != "":
+                elem = para.text.split(' - ')
+                quote = QuoteModel(elem[0], elem[1])
+                quotes.append(quote)
         return quotes

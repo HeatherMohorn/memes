@@ -1,5 +1,5 @@
 
-from .DOCXIngestor import DocxIngestor
+from .DOCXIngestor import DOCXIngestor
 from .CSVIngestor import CSVIngestor
 from .PDFIngestor import PDFIngestor
 from .TextIngestor import TextIngestor

@@ -1,8 +1,10 @@
-import QuoteModel
-import IngestorInterface
+from ..QuoteEngine.QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
 import subprocess
 
 class PDFIngestor(IngestorInterface):
+    pass
+"""
     allowed_extensions = ['pdf']
 
     @classmethod
@@ -23,4 +25,4 @@ class PDFIngestor(IngestorInterface):
         file_ref.close()
         os.remove(tmp)
         return quotes
-    pass
+        """

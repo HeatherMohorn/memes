@@ -9,18 +9,18 @@ class MemeGenerator():
 
     def make_meme(self, img_path, text, author, width = 500):
         image = Image.open(img_path)
-        names = img_path.split('.')
+        names = self.img_path.split('.')
         out_path = names[0] + '_meme.' + names[1]
 
-        if crop is not None:
-            image = image.crop(crop)
+        if self.crop is not None:
+            image = image.crop(self.crop)
 
-        if width is not None:
+        if self.width is not None:
             ratio = width/float(img.size[0])
             height = int(ratio * float(img.size[1]))
             image = image.resize((width, height), Image.NEAREST)
 
-        message = text + " -" + author
+        message = self.text + " -" + self.author
         if message is not None:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype('./fonts/LilitaOne-Regular.ttf', size = 20)

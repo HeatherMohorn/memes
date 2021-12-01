@@ -1,5 +1,5 @@
-import QuoteModel
-import IngestorInterface
+from ..QuoteEngine.QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
 
 class TextIngestor(IngestorInterface):
     allowed_extensions = ['txt']
