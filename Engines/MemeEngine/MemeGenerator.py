@@ -1,5 +1,4 @@
-import PIL
-#import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 class MemeGenerator():
     def __init__(self, img_path, text, author, width):
