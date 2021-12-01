@@ -12,4 +12,4 @@ class Ingestor(IngestorInterface):
     def parse(cls, path):
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):
-                return imporser.parse(path)
+                return ingestor.parse(path)
