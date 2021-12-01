@@ -1,6 +1,8 @@
 import os
 import random
-
+from Engines.MemeEngine.MemeGenerator import MemeGenerator
+from Engines.Ingestors import Ingestor
+import argparse
 # @TODO Import your Ingestor and MemeEngine classes
 
 
@@ -44,5 +46,9 @@ if __name__ == "__main__":
     # path - path to an image file
     # body - quote body to add to the image
     # author - quote author to add to the image
-    args = None
+    parser = argparse.ArgumentParser(description = "Enter details")
+    parser.add_argument('--path', type = str)
+    parser.add_argument('--body', type = str)
+    parser.add_argument('--author', type = str)
+    args = parser.parse_args()
     print(generate_meme(args.path, args.body, args.author))
