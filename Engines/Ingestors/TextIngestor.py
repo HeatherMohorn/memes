@@ -15,5 +15,7 @@ class TextIngestor(IngestorInterface):
         for line in lines:
             elements = line.split(' - ')
             quote = QuoteModel(elements[0], elements[1])
+            print(quote)
             quotes.append(quote)
+
         return quotes

@@ -15,11 +15,11 @@ def generate_meme(path=None, body=None, author=None):
         for root, dirs, files in os.walk(images):
             imgs = [os.path.join(root, name) for name in files]
             #make random
-        #img = random.choice(imgs)
-        img = imgs[0]
+        img = random.choice(imgs)
+        #img = "./Engines/_data/photos/dog/xander_1.jpg"
     else:
         img = path[0]
-
+    print("img: " + img)
     if body is None:
         quote_files = ['./Engines/_data/DogQuotes/DogQuotesTXT.txt',
                        #'./Engines/_data/DogQuotes/DogQuotesDOCX.docx',
@@ -29,12 +29,12 @@ def generate_meme(path=None, body=None, author=None):
         for f in quote_files:
             quotes.extend(Ingestor.parse(f))
         #change this to random
-        quote = quotes[0]
+        quote = random.choice(quotes)
     else:
         if author is None:
             raise Exception('Author Required if Body is Used')
         quote = QuoteModel(body, author)
-    path = MemeGenerator.make_meme(img, quote.body, quote.author, 'Heather')
+    path = MemeGenerator.make_meme(img, quote.body, quote.author)
     return path
 
 

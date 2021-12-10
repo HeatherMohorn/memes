@@ -3,8 +3,9 @@ import docx
 
 class QuoteModel():
     def __init__(self, body, author):
-        self.body = body
-        self.author = author
+        self.body = str(body)
+        self.author = str(author)
 
     def __str__(self):
-        string = f'"{self.body}" - {self.author}'
+        string = 'QuoteModel ' + self.body + ' - ' + self.author
+        return string
