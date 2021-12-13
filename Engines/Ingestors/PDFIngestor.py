@@ -2,6 +2,7 @@ from ..QuoteEngine.QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
 import subprocess
 
+
 class PDFIngestor(IngestorInterface):
 
     allowed_extensions = ['pdf']

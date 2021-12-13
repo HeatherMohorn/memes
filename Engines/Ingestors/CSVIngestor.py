@@ -2,6 +2,7 @@ from ..QuoteEngine.QuoteModel import QuoteModel
 from .IngestorInterface import IngestorInterface
 import csv
 
+
 class CSVIngestor(IngestorInterface):
     allowed_extensions = ['csv']
 

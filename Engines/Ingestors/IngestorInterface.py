@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from ..QuoteEngine.QuoteModel import QuoteModel
 
+
 class IngestorInterface(ABC):
     allowed_extensions = []
 

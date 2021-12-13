@@ -1,6 +1,7 @@
 import csv
 import docx
 
+
 class QuoteModel():
     def __init__(self, body, author):
         self.body = str(body)
