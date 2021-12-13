@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
+import textwrap
 
 
 class MemeGenerator():
@@ -17,8 +18,10 @@ class MemeGenerator():
             ratio = float(width)/float(image.size[0])
             height = int(ratio * float(image.size[1]))
             image = image.resize((width, height), Image.NEAREST)
-
         message = text + " -" + author
+        wrapper = textwrap.TextWrapper(width=50)
+        message = wrapper.fill(text=message)
+
         if message is not None:
             draw = ImageDraw.Draw(image)
             draw.text((10, 30), message)
