@@ -13,6 +13,7 @@ class CSVIngestor(IngestorInterface):
         with open(path, 'r') as infile:
             reader = csv.DictReader(infile)
             for elem in reader:
-                quote = QuoteModel(elem['body'], elem['author'])
+                text = elem['body'].strip('"')
+                quote = QuoteModel(text, elem['author'])
                 quotes.append(quote)
         return quotes

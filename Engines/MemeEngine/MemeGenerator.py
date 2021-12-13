@@ -8,16 +8,9 @@ class MemeGenerator():
         self.width = width
 
     def make_meme(img_path, text, author, width = 500):
-        print(img_path)
         image = Image.open(img_path)
-        names = img_path.split('.')
-        for name in names:
-            print(name)
-        out_path = '.' + names[1] + '_meme.'+ names[2] + '.jpg'
-        print(out_path)
-
-        #if crop is not None:
-        #    image = image.crop(crop)
+        names = text.split(' ')
+        out_path = 'static/' + names[-1] + '_meme.jpg'
 
         if width is not None:
             ratio = float(width)/float(image.size[0])
@@ -27,8 +20,8 @@ class MemeGenerator():
         message = text + " -" + author
         if message is not None:
             draw = ImageDraw.Draw(image)
-            #font = ImageFont.truetype('./fonts/LilitaOne-Regular.ttf', size = 20)
+            #font = ImageFont.truetype('./fonts/OpenSans-Regular.ttf', size = 20)
             #draw.text((10, 30), message, font=font, fill='white')
-            draw.text((10, 30), message, fill='white')
+            draw.text((10, 30), message)
             image.save(out_path)
         return out_path
